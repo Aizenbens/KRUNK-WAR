@@ -1,5 +1,5 @@
 import Engine from "./engine.js";
-
+console.log("MAIN LOADED");
 const playButton = document.getElementById("playButton");
 const settingsButton = document.getElementById("settingsButton");
 const leaderboardButton = document.getElementById("leaderboardButton");
