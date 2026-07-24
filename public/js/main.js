@@ -19,6 +19,8 @@ playButton.addEventListener("click", () => {
     console.log("2 - Play clicked");
 
     const name = playerName.value.trim();
+
+    if (name.length < 2) {
         alert("Please enter your name.");
         return;
     }
