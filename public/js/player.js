@@ -87,13 +87,12 @@ export default class Player {
       update(delta) {
 
         this.direction.set(0,0,0);
+if(this.keys["KeyW"])
+    this.direction.z += 1;
 
-        if(this.keys["KeyW"])
-            this.direction.z -= 1;
-
-        if(this.keys["KeyS"])
-            this.direction.z += 1;
-
+if(this.keys["KeyS"])
+    this.direction.z -= 1;
+          
         if(this.keys["KeyA"])
             this.direction.x -= 1;
 
@@ -123,16 +122,15 @@ export default class Player {
 
         );
 
-        this.position.addScaledVector(
+       this.position.addScaledVector(
 
-            forward,
+    forward,
 
-            -this.direction.z *
-            this.currentSpeed *
-            delta
+    this.direction.z *
+    this.currentSpeed *
+    delta
 
-        );
-
+);
         this.position.addScaledVector(
 
             right,
