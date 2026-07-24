@@ -14,12 +14,13 @@ export default class Enemy {
 
         this.mesh = this.createMesh();
 
-        this.mesh.position.copy(position);
+this.mesh.userData.enemy = this;
 
-        this.mesh.name = "enemy";
+this.mesh.position.copy(position);
 
-        this.scene.add(this.mesh);
+this.mesh.name = "enemy";
 
+this.scene.add(this.mesh);
     }
 
     createMesh() {
