@@ -3,11 +3,10 @@ import * as THREE from "three";
 import Player from "./player.js";
 import Weapon from "./weapon.js";
 import World from "./world.js";
-
 export default class Engine {
 
     constructor() {
-
+        console.log("ENGINE CREATED");
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x87ceeb);
         this.scene.fog = new THREE.Fog(0x87ceeb, 80, 300);
