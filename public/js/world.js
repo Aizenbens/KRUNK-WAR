@@ -6,83 +6,119 @@ export default class World {
 
         this.scene = scene;
 
-        this.createGround();
         this.createLights();
-        this.createMap();
-
-    }
-
-    createGround() {
-
-        const geometry = new THREE.PlaneGeometry(500, 500);
-
-        const material = new THREE.MeshStandardMaterial({
-            color: 0x3b7d3b
-        });
-
-        const ground = new THREE.Mesh(geometry, material);
-
-        ground.rotation.x = -Math.PI / 2;
-
-        ground.receiveShadow = true;
-
-        ground.name = "Ground";
-
-        this.scene.add(ground);
+        this.createGround();
+        this.createWalls();
+        this.createBoxes();
 
     }
 
     createLights() {
 
-        const ambient = new THREE.AmbientLight(0xffffff, 1);
-
+        const ambient = new THREE.AmbientLight(0xffffff, 0.6);
         this.scene.add(ambient);
 
-        const sun = new THREE.DirectionalLight(0xffffff, 2);
-
-        sun.position.set(30, 50, 20);
-
+        const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+        sun.position.set(20, 40, 20);
         sun.castShadow = true;
 
         this.scene.add(sun);
 
     }
 
-    createMap() {
+    createGround() {
+
+        const geometry = new THREE.PlaneGeometry(300, 300);
 
         const material = new THREE.MeshStandardMaterial({
-            color: 0x777777
+            color: 0x3d8b37
         });
 
-        for (let i = 0; i < 30; i++) {
+        const ground = new THREE.Mesh(geometry, material);
+
+        ground.rotation.x = -Math.PI / 2;
+        ground.receiveShadow = true;
+        ground.name = "Ground";
+
+        this.scene.add(ground);
+
+    }
+
+    createWalls() {
+
+        const geometry = new THREE.BoxGeometry(8,6,1);
+
+        const material = new THREE.MeshStandardMaterial({
+            color: 0x888888
+        });
+
+        const positions = [
+
+            [0,3,-25],
+            [25,3,0],
+            [-25,3,0],
+            [0,3,25],
+
+            [12,3,-10],
+            [-12,3,10],
+            [15,3,18],
+            [-18,3,-15]
+
+        ];
+
+        positions.forEach(pos=>{
+
+            const wall = new THREE.Mesh(
+                geometry,
+                material
+            );
+
+            wall.position.set(
+                pos[0],
+                pos[1],
+                pos[2]
+            );
+
+            wall.castShadow = true;
+            wall.receiveShadow = true;
+
+            wall.name = "Wall";
+
+            this.scene.add(wall);
+
+        });
+
+    }
+
+    createBoxes() {
+
+        const geometry = new THREE.BoxGeometry(3,3,3);
+
+        const material = new THREE.MeshStandardMaterial({
+            color: 0x8b5a2b
+        });
+
+        for(let i=0;i<30;i++){
 
             const box = new THREE.Mesh(
-
-                new THREE.BoxGeometry(
-                    5,
-                    5 + Math.random() * 8,
-                    5
-                ),
-
+                geometry,
                 material
-
             );
 
             box.position.set(
 
-                (Math.random() - 0.5) * 120,
+                Math.random()*120-60,
 
-                2.5,
+                1.5,
 
-                (Math.random() - 0.5) * 120
+                Math.random()*120-60
 
             );
 
             box.castShadow = true;
-
             box.receiveShadow = true;
 
-            box.name = "Wall";
+            box.name = "Box";
 
             this.scene.add(box);
 
