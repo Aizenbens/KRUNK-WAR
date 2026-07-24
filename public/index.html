@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>KRUNK WAR</title>
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/menu.css">
+<link rel="stylesheet" href="/css/hud.css">
+</head>
+
+<body>
+
+<div id="mainMenu">
+
+<h1>KRUNK WAR</h1>
+
+<input
+id="playerName"
+type="text"
+placeholder="Player Name">
+
+<select id="weapon">
+
+<option value="rifle">Rifle</option>
+
+<option value="sniper">Sniper</option>
+
+<option value="smg">SMG</option>
+
+</select>
+
+<button id="playButton">Play</button>
+
+<button id="settingsButton">Settings</button>
+
+<button id="leaderboardButton">Leaderboard</button>
+
+</div>
+
+<div id="hud" style="display:none">
+
+<div id="ammo">30</div>
+
+</div>
+
+<div id="crosshair" style="display:none">
++
+</div>
+
+<script type="module" src="/js/main.js"></script>
+
+</body>
+</html>
