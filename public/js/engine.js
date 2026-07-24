@@ -1,148 +1,105 @@
-import * as THREE from "https://unpkg.com/three@0.167.1/build/three.module.js";
+import * as THREE from "three";
 
-import World from "./world.js";
 import Player from "./player.js";
 import Weapon from "./weapon.js";
+import World from "./world.js";
 
 export default class Engine {
 
     constructor() {
 
-        /* Scene */
-
         this.scene = new THREE.Scene();
-
         this.scene.background = new THREE.Color(0x87ceeb);
-
-        /* Camera */
+        this.scene.fog = new THREE.Fog(0x87ceeb, 80, 300);
 
         this.camera = new THREE.PerspectiveCamera(
-
             75,
-
             window.innerWidth / window.innerHeight,
-
             0.1,
-
             1000
-
         );
 
-        /* Renderer */
-
         this.renderer = new THREE.WebGLRenderer({
-
-            canvas: document.getElementById("gameCanvas"),
-
             antialias: true
-
         });
 
         this.renderer.setSize(
-
             window.innerWidth,
-
             window.innerHeight
-
         );
 
         this.renderer.shadowMap.enabled = true;
 
-        /* Clock */
+        document.body.appendChild(
+            this.renderer.domElement
+        );
 
         this.clock = new THREE.Clock();
 
-        /* World */
-
         this.world = new World(this.scene);
-
-        /* Player */
 
         this.player = new Player(this.camera);
 
-        /* Weapon */
-
         this.weapon = new Weapon(
-
             this.scene,
-
             this.camera
-
         );
 
         this.scene.add(this.camera);
 
         window.addEventListener(
-
             "resize",
-
-            () => this.resize()
-
+            () => this.onResize()
         );
 
-    }
+        window.addEventListener(
+            "mousedown",
+            (e) => {
 
-    resize() {
+                if (e.button === 0)
+                    this.weapon.shoot();
 
-        this.camera.aspect =
-
-            window.innerWidth /
-
-            window.innerHeight;
-
-        this.camera.updateProjectionMatrix();
-
-        this.renderer.setSize(
-
-            window.innerWidth,
-
-            window.innerHeight
-
+            }
         );
-
-    }
-
-    update(delta) {
-
-        this.player.update(delta);
-
-        this.weapon.update(delta);
-
-    }
-
-    render() {
-
-        this.renderer.render(
-
-            this.scene,
-
-            this.camera
-
-        );
-
-    }
-
-    animate() {
-
-        requestAnimationFrame(
-
-            () => this.animate()
-
-        );
-
-        const delta =
-
-            this.clock.getDelta();
-
-        this.update(delta);
-
-        this.render();
 
     }
 
     start() {
 
         this.animate();
+
+    }
+
+    animate() {
+
+        requestAnimationFrame(
+            () => this.animate()
+        );
+
+        const delta =
+            this.clock.getDelta();
+
+        this.player.update(delta);
+
+        this.renderer.render(
+            this.scene,
+            this.camera
+        );
+
+    }
+
+    onResize() {
+
+        this.camera.aspect =
+            window.innerWidth /
+            window.innerHeight;
+
+        this.camera.updateProjectionMatrix();
+
+        this.renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
 
     }
 
