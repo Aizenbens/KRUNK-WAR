@@ -1,6 +1,7 @@
 {
   "name": "krunk-war",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +10,9 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "three": "^0.167.1"
+    "socket.io": "^4.8.1",
+    "three": "^0.167.1",
+    "cannon-es": "^0.20.0"
   },
   "devDependencies": {
     "vite": "^5.4.0"
