@@ -27,10 +27,29 @@ export default class Weapon {
         this.mesh = null;
 
         this.createWeapon();
+        this.ads = new WeaponADS(
+    this.camera,
+    this.mesh,
+    this.config
+);
+
+this.recoil = new WeaponRecoil(
+    this.mesh,
+    this.config
+);
+
+this.animation = new WeaponAnimation(
+    this.mesh
+);
+
+this.effects = new WeaponEffects(
+    this.mesh
+);
 
     }
 
     createWeapon() {
+        
 
         const body =
             new THREE.BoxGeometry(
@@ -101,6 +120,9 @@ export default class Weapon {
         this.lastShot = now;
 
         this.ammo--;
+        this.recoil.shoot();
+
+this.effects.shoot();
 
     }
 
@@ -124,6 +146,14 @@ export default class Weapon {
 
     update(delta){
 
-    }
+    this.ads.update(delta);
+
+    this.recoil.update(delta);
+
+    this.animation.update(delta, false);
+
+    this.effects.update(delta);
+
+}
 
 }
