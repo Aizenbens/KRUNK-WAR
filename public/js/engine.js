@@ -6,8 +6,9 @@ import World from "./world.js";
 export default class Engine {
 
     constructor() {
-        console.log("ENGINE CREATED");
+        console.log("3 - Engine constructor");
         this.scene = new THREE.Scene();
+        console.log("4 - Scene created");
         this.scene.background = new THREE.Color(0x87ceeb);
         this.scene.fog = new THREE.Fog(0x87ceeb, 80, 300);
 
@@ -38,8 +39,9 @@ export default class Engine {
         this.world = new World(this.scene);
 
         this.player = new Player(this.camera);
-
+        console.log("5 - Player created");
         this.weapon = new Weapon(
+            console.log("6 - Weapon created");
             this.scene,
             this.camera
         );
