@@ -1,5 +1,5 @@
 import Engine from "./engine.js";
-console.log("MAIN LOADED");
+console.log("1 - main.js loaded"); 
 const playButton = document.getElementById("playButton");
 const settingsButton = document.getElementById("settingsButton");
 const leaderboardButton = document.getElementById("leaderboardButton");
@@ -15,9 +15,9 @@ let game = null;
 
 playButton.addEventListener("click", () => {
 
-    const name = playerName.value.trim();
+    console.log("2 - Play clicked");
 
-    if (name.length < 2) {
+    const name = playerName.value.trim();
         alert("Please enter your name.");
         return;
     }
