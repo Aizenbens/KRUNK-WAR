@@ -1,4 +1,4 @@
-import * as THREE from "https://unpkg.com/three@0.164.1/build/three.module.js";
+import * as THREE from "three";
 import Player from "./player.js";
 import Weapon from "./weapon.js";
 import World from "./world.js";
