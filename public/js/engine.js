@@ -71,23 +71,25 @@ console.log("6 - Weapon created");
 
     }
 
-    animate() {
+ animate() {
 
-        requestAnimationFrame(
-            () => this.animate()
-        );
+    requestAnimationFrame(
+        () => this.animate()
+    );
 
-        const delta =
-            this.clock.getDelta();
+    const delta =
+        this.clock.getDelta();
 
-        this.player.update(delta);
+    this.player.update(delta);
 
-        this.renderer.render(
-            this.scene,
-            this.camera
-        );
+    this.weapon.update(delta);
 
-    }
+    this.renderer.render(
+        this.scene,
+        this.camera
+    );
+
+}
 
     onResize() {
 
