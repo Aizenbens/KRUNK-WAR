@@ -37,14 +37,15 @@ export default class Engine {
         this.clock = new THREE.Clock();
 
         this.world = new World(this.scene);
+this.player = new Player(this.camera);
+console.log("5 - Player created");
 
-        this.player = new Player(this.camera);
-        console.log("5 - Player created");
-        this.weapon = new Weapon(
-            console.log("6 - Weapon created");
-            this.scene,
-            this.camera
-        );
+this.weapon = new Weapon(
+    this.scene,
+    this.camera
+);
+
+console.log("6 - Weapon created");
 
         this.scene.add(this.camera);
 
